@@ -1,7 +1,8 @@
 int width = 300;
 int height = 300;
 PulseInt backgroundColor = new PulseInt(0, 0, 255, 1);
-PulseInt strokeColor = new PulseInt(200, 200, 220, 3);
+PulseInt strokeColor = new PulseInt(200, 200, 220, 1);
+PulseInt strokeWidth = new PulseInt(10, 1, 40, 1);
 
 class PulseInt {
 	int grey;
@@ -37,10 +38,10 @@ void setup() {
 void draw() {
 	backgroundColor.pulse();
 	background(backgroundColor.grey);
-	// stroke(200);
 	strokeColor.pulse();
 	stroke(strokeColor.grey);
-	strokeWeight(40);
+	strokeWidth.pulse();
+	strokeWeight(strokeWidth.grey);
 	fill(120);
 	rect(0, 0, width/2, height/2);
 	rect(width/2, height/2, width, height);
