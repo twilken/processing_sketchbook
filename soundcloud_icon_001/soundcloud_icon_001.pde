@@ -34,7 +34,6 @@ void setup() {
 	background(0);
 }
 
-
 void draw() {
 	backgroundColor.pulse();
 	background(backgroundColor.grey);
