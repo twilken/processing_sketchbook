@@ -1,15 +1,15 @@
 int width = 300;
 int height = 300;
-PulseColor backgroundColor = new PulseColor(0, 0, 255, 1);
-PulseColor strokeColor = new PulseColor(200, 200, 220, 3);
+PulseInt backgroundColor = new PulseInt(0, 0, 255, 1);
+PulseInt strokeColor = new PulseInt(200, 200, 220, 3);
 
-class PulseColor {
+class PulseInt {
 	int grey;
 	int min;
 	int max;
 	int increment;
 
-	PulseColor(int start, int min, int max, int increment) {
+	PulseInt(int start, int min, int max, int increment) {
 		this.grey = start;
 		this.max = max;
 		this.min = min;
