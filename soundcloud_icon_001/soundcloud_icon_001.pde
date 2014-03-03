@@ -1,8 +1,9 @@
 int width = 300;
 int height = 300;
-PulseInt backgroundColor = new PulseInt(0, 0, 255, 1);
-PulseInt strokeColor = new PulseInt(200, 200, 220, 1);
-PulseInt strokeWidth = new PulseInt(0, 0, 10, 0.2f);
+PulseInt backgroundColor = new PulseInt(100, 0, 100, 0.1f);
+PulseInt strokeColor = new PulseInt(200, 200, 220, 1.0f);
+PulseInt strokeWidthSun = new PulseInt(0, 0, 10, 0.2f);
+PulseInt strokeWidthOther = new PulseInt(0, 0, 100, 0.2f);
 
 class PulseInt {
 	private float grey;
@@ -24,10 +25,10 @@ class PulseInt {
 	void pulse() {
 		grey += increment;
 		if (grey > max) {
-			grey = max;
+			grey = max - increment;
 			increment *= -1;
 		} else if (grey < min) {
-			grey = min;
+			grey = min + increment;
 			increment *= -1;
 		}
 	}
@@ -38,25 +39,34 @@ void setup() {
 	background(0);
 }
 
-void draw() {
-	backgroundColor.pulse();
-	background(backgroundColor.value());
-
-	strokeColor.pulse();
-	stroke(strokeColor.value());
-
-	strokeWidth.pulse();
-	strokeWeight(strokeWidth.value());
-
-	fill(120);
-	rect(width-width/3, height/2, width, height);
-	quad(189, 18, 216, 18, 216, 360, 144, 360);
+void drawSun() {
+	stroke(205);
+	strokeWidthSun.pulse();
+	strokeWeight(strokeWidthSun.value());
 	fill(220, 200, 60);
 	ellipse(width/2, 0, 150, 150);
 	fill(235, 170, 60);
 	ellipse(width/2, 0, 120, 120);
 	fill(255, 130, 60);
 	ellipse(width/2, 0, 90, 90);
-	fill(120);
-	triangle(-20, -20, -20, 360, 81, 360);
+}
+
+void drawHorizon() {
+	fill(180, 130, 90);
+	strokeWeight(0);
+	rect(0, height/3, width, height);
+}
+
+void draw() {
+	backgroundColor.pulse();
+	background(230, 100, 250);
+
+	strokeColor.pulse();
+	stroke(strokeColor.value());
+
+	strokeWidthOther.pulse();
+	strokeWeight(strokeWidthOther.value());
+
+	drawSun();
+	drawHorizon();
 }
