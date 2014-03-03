@@ -2,19 +2,23 @@ int width = 300;
 int height = 300;
 PulseInt backgroundColor = new PulseInt(0, 0, 255, 1);
 PulseInt strokeColor = new PulseInt(200, 200, 220, 1);
-PulseInt strokeWidth = new PulseInt(10, 1, 40, 1);
+PulseInt strokeWidth = new PulseInt(0, 0, 20, 0.2f);
 
 class PulseInt {
-	int grey;
-	int min;
-	int max;
-	int increment;
+	private float grey;
+	private int min;
+	private int max;
+	private float increment;
 
-	PulseInt(int start, int min, int max, int increment) {
-		this.grey = start;
+	PulseInt(int start, int min, int max, float increment) {
+		this.grey = (float)start;
 		this.max = max;
 		this.min = min;
 		this.increment = increment;
+	}
+
+	int value() {
+		return (int)grey;
 	}
 
 	void pulse() {
@@ -36,13 +40,15 @@ void setup() {
 
 void draw() {
 	backgroundColor.pulse();
-	background(backgroundColor.grey);
+	background(backgroundColor.value());
+
 	strokeColor.pulse();
-	stroke(strokeColor.grey);
+	stroke(strokeColor.value());
+
 	strokeWidth.pulse();
-	strokeWeight(strokeWidth.grey);
+	strokeWeight(strokeWidth.value());
+
 	fill(120);
-	rect(0, 0, width/2, height/2);
 	rect(width/2, height/2, width, height);
 	ellipse(width/2, 0, 150, 150);
 }
