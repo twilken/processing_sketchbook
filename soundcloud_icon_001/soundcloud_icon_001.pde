@@ -1,6 +1,7 @@
 int width = 300;
 int height = 300;
 PulseColor backgroundColor = new PulseColor(0, 0, 255, 1);
+PulseColor strokeColor = new PulseColor(200, 200, 220, 3);
 
 class PulseColor {
 	int grey;
@@ -8,8 +9,8 @@ class PulseColor {
 	int max;
 	int increment;
 
-	PulseColor(int grey, int min, int max, int increment) {
-		this.grey = grey;
+	PulseColor(int start, int min, int max, int increment) {
+		this.grey = start;
 		this.max = max;
 		this.min = min;
 		this.increment = increment;
@@ -17,11 +18,11 @@ class PulseColor {
 
 	void pulse() {
 		grey += increment;
-		if (grey > 255) {
-			grey = 255;
+		if (grey > max) {
+			grey = max;
 			increment *= -1;
-		} else if (grey < 0) {
-			grey = 0;
+		} else if (grey < min) {
+			grey = min;
 			increment *= -1;
 		}
 	}
@@ -36,7 +37,9 @@ void setup() {
 void draw() {
 	backgroundColor.pulse();
 	background(backgroundColor.grey);
-	stroke(200);
+	// stroke(200);
+	strokeColor.pulse();
+	stroke(strokeColor.grey);
 	strokeWeight(40);
 	fill(120);
 	rect(0, 0, width/2, height/2);
