@@ -11,14 +11,13 @@ void setup() {
 	final PVector HISTOGRAM_ORIGIN = new PVector(0, IMAGE_AREA_HEIGHT);
 
 	size(WINDOW_WIDTH, WINDOW_HEIGHT);
-	background(250);
 	PImage img = loadImage("bridge.jpg");
-	convertToGray(img); // TODO show image in gray, why is image not gray?
+	convertToGray(img);
 	int[] hist = histogram(img);
-	println(hist);
 	float[] normal = normalizeHistogram(hist);
 
 	// Draw image and histogram
+	background(250);
 	resizeImageToFitArea(img, IMAGE_AREA_WIDTH, IMAGE_AREA_HEIGHT);
 	image(img, 0, 0);
 	drawNormalizedHistogram(normal, HISTOGRAM_ORIGIN, HISTOGRAM_DIMENSIONS);
@@ -49,6 +48,7 @@ void convertToGray(PImage img) {
 	}
 }
 
+// Return a gray scale histogram of img.
 int[] histogram(PImage img) {
 	int[] hist = new int[256];
 	for (int x = 0; x < img.width; x++) {
@@ -61,6 +61,7 @@ int[] histogram(PImage img) {
 	return hist;
 }
 
+// Return the normalized version of hist. Values will be between 0 and 1.
 float[] normalizeHistogram(int[] hist) {
 	float[] normal = new float[hist.length];
 	int maxGray = 0;
@@ -76,6 +77,8 @@ float[] normalizeHistogram(int[] hist) {
 	return normal;
 }
 
+// Draw the normalized histogram normal to origin (upper left corner of histogram).
+// Width and height of the histogram come from the dimensions parameter.
 void drawNormalizedHistogram(float[] normal, PVector origin, PVector dimensions) {
 	int barWidth = (int)dimensions.x / 256;
 	int posX = (int)origin.x;
