@@ -14,6 +14,7 @@ void setup() {
 	// drawHistogram(img);
 }
 
+// Resize img without stretching to fit width and height.
 void resizeImageToFitArea(PImage img, int width, int height) {
 	float widthRatio = float(width) / float(img.width);
 	float heightRatio = float(height) / float(img.height);
@@ -23,6 +24,7 @@ void resizeImageToFitArea(PImage img, int width, int height) {
 	img.resize(newWidth, newHeight);
 }
 
+// Convert img to a gray scale image.
 void convertToGray(PImage img) {
 	for (int x = 0; x < img.width; x++) {
 		for (int y = 0; y < img.height; y++) {
@@ -37,6 +39,7 @@ void convertToGray(PImage img) {
 	}
 }
 
+// Draw a histrogram of imgs gray values.
 void drawHistogram(PImage img) {
 	color barColor = color(30);
 	int barPosX = 0;
