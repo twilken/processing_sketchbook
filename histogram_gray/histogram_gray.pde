@@ -3,7 +3,6 @@ void setup() {
 	size(img.width, img.height);
 	image(img, 0, 0);
 	convertToGray(img);
-	// filter(GRAY);
 	drawHistogram(img);
 }
 
@@ -37,7 +36,6 @@ void drawHistogram(PImage img) {
 	fill(barColor);
 	rectMode(CORNERS);
 	for (int i = 0; i < hist.length; i++) {
-		// rect(barPosX, height - (hist[i]), barWidth, height);
 		int rectX = barPosX;
 		int rectY = height;
 		int rectWidth = barPosX + barWidth;
