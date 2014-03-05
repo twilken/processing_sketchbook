@@ -1,3 +1,15 @@
+// Represents an immutable point in 2D space.
+class Point {
+	final int X;
+	final int Y;
+
+	Point(int x, int y) {
+		this.X = x;
+		this.Y = y;
+	}
+};
+
+// Setup the scene. This function is called at startup.
 void setup() {
 	final int WINDOW_WIDTH = 768;
 	final int WINDOW_HEIGHT = 700;
@@ -7,8 +19,8 @@ void setup() {
 
 	final int HISTOGRAM_WIDTH = WINDOW_WIDTH;
 	final int HISTOGRAM_HEIGHT = WINDOW_HEIGHT - IMAGE_AREA_HEIGHT;
-	final PVector HISTOGRAM_DIMENSIONS = new PVector(HISTOGRAM_WIDTH, HISTOGRAM_HEIGHT);
-	final PVector HISTOGRAM_ORIGIN = new PVector(0, IMAGE_AREA_HEIGHT);
+	final Point HISTOGRAM_DIMENSIONS = new Point(HISTOGRAM_WIDTH, HISTOGRAM_HEIGHT);
+	final Point HISTOGRAM_ORIGIN = new Point(0, IMAGE_AREA_HEIGHT);
 
 	size(WINDOW_WIDTH, WINDOW_HEIGHT);
 	PImage img = loadImage("bridge.jpg");
@@ -79,15 +91,15 @@ float[] normalizeHistogram(int[] hist) {
 
 // Draw the normalized histogram normal to origin (upper left corner of histogram).
 // Width and height of the histogram come from the dimensions parameter.
-void drawNormalizedHistogram(float[] normal, PVector origin, PVector dimensions) {
-	int barWidth = (int)dimensions.x / 256;
-	int posX = (int)origin.x;
-	int posY = (int)origin.y + (int)dimensions.y;
+void drawNormalizedHistogram(float[] normal, Point origin, Point dimensions) {
+	int barWidth = (int)dimensions.X / 256;
+	int posX = (int)origin.X;
+	int posY = (int)origin.Y + (int)dimensions.Y;
 	rectMode(CORNERS);
 	noStroke();
 	fill(60);
 	for (int i = 0; i < normal.length; i++) {
-		rect(posX, posY, posX + barWidth, posY - (normal[i] * dimensions.y));
+		rect(posX, posY, posX + barWidth, posY - (normal[i] * dimensions.Y));
 		posX += barWidth;
 	}
 }
