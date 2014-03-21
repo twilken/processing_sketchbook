@@ -1,4 +1,4 @@
 processing-sketchbook
 =====================
 
-Collection of small processing programs
+Collection of small [processing](http://www.processing.org/) programs.
