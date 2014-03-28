@@ -2,13 +2,13 @@ uniform mat4 transform;
 uniform mat3 normalMatrix;
 uniform vec3 lightNormal;
 
-attribute vec4 vertex;
-attribute vec4 color;
-attribute vec3 normal;
+in vec4 vertex;
+in vec4 color;
+in vec3 normal;
 
-varying vec4 vertColor;
-varying vec3 vertNormal;
-varying vec3 vertLightDir;
+out vec4 vertColor;
+out vec3 vertNormal;
+out vec3 vertLightDir;
 
 void main() {
   gl_Position = transform * vertex;

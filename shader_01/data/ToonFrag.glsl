@@ -7,9 +7,9 @@ precision mediump int;
 
 uniform float fraction;
 
-varying vec4 vertColor;
-varying vec3 vertNormal;
-varying vec3 vertLightDir;
+in vec4 vertColor;
+in vec3 vertNormal;
+in vec3 vertLightDir;
 
 void main() {
   float intensity;
